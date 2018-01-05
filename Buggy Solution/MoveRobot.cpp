@@ -50,7 +50,7 @@ void move (const string& robotName, const string& dir)
 			}
 			else if (dir=="DL"){
 				x++;
-				y--;
+				y++;
 			}
 			else return;
         }
