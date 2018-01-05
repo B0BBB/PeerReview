@@ -42,7 +42,10 @@ void StartControl() {
             const int index = find_robot(name);
             if (index != -1) {
                 get_cord(index, x, y);
-                if (getTankCounter(index) <= TANK_FULL) {
+                if (getTankCounter(index) > TANK_FULL) {
+                    emptyTank(name, index);
+
+                } else {
                     if (x != -1 && y != -1) {
                         bool dirty = isDirty(x, y);
                         clean(x, y);
@@ -51,16 +54,17 @@ void StartControl() {
                             updateRank(index);
                         PrintClean(name, x, y);
                     }
-                } else emptyTank(name, index);
+                }
             }
-
         } else if (command == "MoveMulti") {
             cin >> name;
-            cin >> dir;
-            do {
+            while (cin >> dir) {
+                if (dir == "end")
+                    break;
                 move(name, dir);
                 cin >> dir;
-            } while (dir != "end");
+            }
+
         } else std::cout << "Please enter a valid command" << std::endl;
 
         /* just for debugging */
