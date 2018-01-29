@@ -22,7 +22,7 @@ Robot* RobotDB::getRobot(string robotName) {
     it = mapOfRobots.find(robotName);
     if ( it != mapOfRobots.end())
         return it->second;
-    else return nullptr;
+    else return NULL;
 }
 
 const vector <string>& RobotDB::getRobots() {

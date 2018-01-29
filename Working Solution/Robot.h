@@ -35,7 +35,7 @@ public:
         PrintRobotPlace(name, location.first, location.second);
     }
 
-    ~Robot() = default;
+    ~Robot() {};
 
 private:
     pair<int, int> location;

@@ -25,7 +25,7 @@ moveDirection string2enum(const string &dir) {
 }
 
 void StartControl() {
-    auto *robotsDB = new RobotDB;
+    RobotDB *robotsDB = new RobotDB;
     char line[256];
     cout << "Start entering commands:" << endl;
 
@@ -43,7 +43,7 @@ void StartControl() {
         if (command == "AddDirt") {
             cin >> x >> y;
             if (inMapLimit(x, y)) {
-                pair<int, int> xy{x, y};
+                pair<int, int> xy(x, y);
                 if (!robotsDB->isRobotAtLocation(xy))
                     addDirt(x, y);
             }
@@ -51,11 +51,11 @@ void StartControl() {
         }
         cin >> name;
         Robot *curRobot = robotsDB->getRobot(name);
-        if (curRobot == nullptr and command != "Place") continue;
+        if (curRobot == NULL and command != "Place") continue;
         else if (command == "Place") {
             cin >> x >> y;
-            pair<int, int> xy{x, y};
-            if (curRobot == nullptr) {
+            pair<int, int> xy(x, y);
+            if (curRobot == NULL) {
                 if (inMapLimit(x, y)) robotsDB->addRobot(new Robot(name, xy));
             } else {
                 curRobot->setLocation(xy);
