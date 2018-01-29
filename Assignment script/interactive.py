@@ -1,4 +1,4 @@
-from assignment import AssignSubject
+from assignment import AssignmentsDB
 
 
 class InterFace:
